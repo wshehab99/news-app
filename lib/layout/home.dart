@@ -5,6 +5,9 @@ import 'package:news_app/cubit/app_states.dart';
 
 class HomeLayout extends StatelessWidget {
   const HomeLayout({Key? key}) : super(key: key);
+  addNews() {
+    print("added");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,6 @@ class HomeLayout extends StatelessWidget {
           builder: (context, state) {
             AppCubit cubit = context.read<AppCubit>();
             return Scaffold(
-             
               appBar: AppBar(
                 title: const Text('News App'),
               ),
