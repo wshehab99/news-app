@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'News App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          primarySwatch: Colors.deepOrange,
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
               backgroundColor: Colors.deepOrange),
           scaffoldBackgroundColor: Colors.white,
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
               type: BottomNavigationBarType.fixed,
               selectedItemColor: Colors.deepOrange,
               elevation: 20.0)),
-      home: const HomeLayout(),
+      home: const Directionality(
+          textDirection: TextDirection.rtl, child: HomeLayout()),
     );
   }
 }
