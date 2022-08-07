@@ -45,6 +45,7 @@ class AppCubit extends Cubit<AppStates> {
       },
     ).then((value) {
       business = value.data['articles'];
+      print(business);
       emit(BusinessGetSuccessState());
     }).catchError((onError) {
       print(onError.toString());
