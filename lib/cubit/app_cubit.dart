@@ -29,6 +29,7 @@ class AppCubit extends Cubit<AppStates> {
   List business = [];
   List sports = [];
   List science = [];
+  bool isDark = false;
   void changeCurrentIndex(int index) {
     currntIndex = index;
     emit(BottomNavigationState());
@@ -88,5 +89,10 @@ class AppCubit extends Cubit<AppStates> {
       print(onError.toString());
       emit(ScienceGetErrorState(onError.toString()));
     });
+  }
+
+  void changeAppMode() {
+    isDark = !isDark;
+    emit(ChangeAppModeState());
   }
 }

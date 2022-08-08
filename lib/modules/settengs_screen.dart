@@ -5,10 +5,10 @@ class SettignsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text(
         "Settigns Screen",
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        style: Theme.of(context).textTheme.bodyText1,
       ),
     );
   }

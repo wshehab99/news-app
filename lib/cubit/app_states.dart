@@ -23,3 +23,5 @@ class ScienceGetSuccessState extends AppStates {}
 class ScienceGetErrorState extends AppStates {
   ScienceGetErrorState(String errer);
 }
+
+class ChangeAppModeState extends AppStates {}

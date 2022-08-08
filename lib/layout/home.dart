@@ -11,25 +11,34 @@ class HomeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => AppCubit(InintialAppState()),
-        child: BlocBuilder<AppCubit, AppStates>(
-          builder: (context, state) {
-            AppCubit cubit = context.read<AppCubit>();
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text('News App'),
-              ),
-              bottomNavigationBar: BottomNavigationBar(
-                currentIndex: cubit.currntIndex,
-                items: cubit.items,
-                onTap: (index) {
-                  cubit.changeCurrentIndex(index);
-                },
-              ),
-              body: cubit.screens[cubit.currntIndex],
-            );
-          },
-        ));
+    return BlocBuilder<AppCubit, AppStates>(
+      builder: (context, state) {
+        AppCubit cubit = context.read<AppCubit>();
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('News App'),
+            titleSpacing: 20.0,
+            actions: [
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.search),
+                  color: Theme.of(context).iconTheme.color),
+              IconButton(
+                  onPressed: cubit.changeAppMode,
+                  icon: const Icon(Icons.brightness_6_outlined),
+                  color: Theme.of(context).iconTheme.color),
+            ],
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: cubit.currntIndex,
+            items: cubit.items,
+            onTap: (index) {
+              cubit.changeCurrentIndex(index);
+            },
+          ),
+          body: cubit.screens[cubit.currntIndex],
+        );
+      },
+    );
   }
 }
