@@ -34,10 +34,7 @@ class ArticleItem extends StatelessWidget {
               children: [
                 Text(
                   article!['title'],
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
                   maxLines: 3,
                   textDirection: TextDirection.rtl,
                   overflow: TextOverflow.ellipsis,
