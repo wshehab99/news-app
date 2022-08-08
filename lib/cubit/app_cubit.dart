@@ -5,6 +5,7 @@ import 'package:news_app/modules/business.dart';
 import 'package:news_app/modules/science.dart';
 import 'package:news_app/modules/settengs_screen.dart';
 import 'package:news_app/modules/sport.dart';
+import 'package:news_app/shared/local/cache_helper.dart';
 
 import '../shared/network/dio_helper.dart';
 
@@ -12,10 +13,9 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit(super.initialState);
   int currntIndex = 0;
   List<BottomNavigationBarItem> items = [
+    const BottomNavigationBarItem(icon: Icon(Icons.wallet), label: "Business"),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.add_business), label: "Business"),
-    const BottomNavigationBarItem(
-        icon: Icon(Icons.sports_baseball), label: "Sports"),
+        icon: Icon(Icons.sports_volleyball), label: "Sports"),
     const BottomNavigationBarItem(icon: Icon(Icons.science), label: "Science"),
     const BottomNavigationBarItem(
         icon: Icon(Icons.settings), label: "Settings"),
@@ -29,7 +29,7 @@ class AppCubit extends Cubit<AppStates> {
   List business = [];
   List sports = [];
   List science = [];
-  bool isDark = false;
+  bool isDark = CacheHelper.getBool(key: "isDark") ?? false;
   void changeCurrentIndex(int index) {
     currntIndex = index;
     emit(BottomNavigationState());
@@ -93,6 +93,10 @@ class AppCubit extends Cubit<AppStates> {
 
   void changeAppMode() {
     isDark = !isDark;
-    emit(ChangeAppModeState());
+    CacheHelper.setBool(key: 'isDark', value: isDark).then(
+      (value) {
+        emit(ChangeAppModeState());
+      },
+    );
   }
 }

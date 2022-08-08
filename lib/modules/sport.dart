@@ -23,7 +23,13 @@ class SprortsScreen extends StatelessWidget {
               itemBuilder: (context, index) => ArticleItem(
                     article: cubit.sports[index],
                   ),
-              separatorBuilder: (context, index) => const Divider(),
+              separatorBuilder: (context, index) => const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Divider(
+                      color: Colors.grey,
+                      thickness: 0.5,
+                    ),
+                  ),
               itemCount: cubit.sports.length);
         },
       ),
