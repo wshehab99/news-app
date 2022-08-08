@@ -40,7 +40,7 @@ class ArticleItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  article!['publishedAt'],
+                  "${article!['publishedAt'].toString().substring(11, 16)} ${article!['publishedAt'].toString().substring(0, 10)}",
                   style: const TextStyle(fontSize: 16, color: Colors.grey),
                   textDirection: TextDirection.rtl,
                 ),
