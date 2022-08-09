@@ -29,6 +29,7 @@ class AppCubit extends Cubit<AppStates> {
   List business = [];
   List sports = [];
   List science = [];
+  List searchedNews = [];
   bool isDark = CacheHelper.getBool(key: "isDark") ?? false;
   void changeCurrentIndex(int index) {
     currntIndex = index;
@@ -98,5 +99,26 @@ class AppCubit extends Cubit<AppStates> {
         emit(ChangeAppModeState());
       },
     );
+  }
+
+  void search(String value) {
+    if (value.isNotEmpty) {
+      emit(LoadingState());
+      DioHelper.getData(
+        url: "v2/everything",
+        query: {
+          "q": value,
+          'apiKey': "57c1029db2d6499a8ed60217479f7f5a",
+        },
+      ).then((value) {
+        searchedNews = value.data['articles'];
+        emit(SearchGetSuccessState());
+      }).catchError((onError) {
+        print(onError.toString());
+        emit(SearchGetErrorState(onError.toString()));
+      });
+    } else {
+      emit(SearchGetSuccessState());
+    }
   }
 }
